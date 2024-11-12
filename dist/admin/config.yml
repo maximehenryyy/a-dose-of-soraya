@@ -1,0 +1,85 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+locale: 'fr'
+
+collections:
+  - name: "hero"
+    label: "🏠 Accueil"
+    folder: "content/hero"
+    create: true
+    fields:
+      - {label: "Titre", name: "title", widget: "string"}
+      - {label: "Sous-titre", name: "subtitle", widget: "string"}
+      - {label: "Description", name: "description", widget: "text"}
+      - label: "Images Carousel"
+        name: "carousel_images"
+        widget: "list"
+        fields:
+          - {label: "Image", name: "image", widget: "image"}
+          - {label: "Titre", name: "title", widget: "string"}
+
+  - name: "services"
+    label: "💎 Services"
+    folder: "content/services"
+    create: true
+    fields:
+      - {label: "Titre", name: "title", widget: "string"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Image", name: "image", widget: "image"}
+      - {label: "Icône", name: "icon", widget: "select", options: ["Crown", "Star", "Gem", "Globe"]}
+      - {label: "Ordre", name: "order", widget: "number"}
+
+  - name: "wellness"
+    label: "🧘‍♀️ Bien-être"
+    folder: "content/wellness"
+    create: true
+    fields:
+      - {label: "Titre", name: "title", widget: "string"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Image", name: "image", widget: "image"}
+      - {label: "Prix", name: "price", widget: "string"}
+      - {label: "Durée", name: "duration", widget: "string"}
+
+  - name: "mystical"
+    label: "✨ Expériences Mystiques"
+    folder: "content/mystical"
+    create: true
+    fields:
+      - {label: "Titre", name: "title", widget: "string"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Image", name: "image", widget: "image"}
+      - {label: "Icône", name: "icon", widget: "select", options: ["Sparkle", "Moon", "Compass", "Stars"]}
+
+  - name: "events"
+    label: "🎉 Événements"
+    folder: "content/events"
+    create: true
+    fields:
+      - {label: "Titre", name: "title", widget: "string"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Image", name: "image", widget: "image"}
+      - {label: "Icône", name: "icon", widget: "select", options: ["Calendar", "Users", "Gift", "Music"]}
+      - label: "Services Inclus"
+        name: "services"
+        widget: "list"
+        field: {label: "Service", name: "service", widget: "string"}
+
+  - name: "contact"
+    label: "📞 Contact"
+    folder: "content/contact"
+    create: false
+    files:
+      - label: "Informations de Contact"
+        name: "info"
+        file: "content/contact/info.md"
+        fields:
+          - {label: "Email", name: "email", widget: "string"}
+          - {label: "Téléphone", name: "phone", widget: "string"}
+          - {label: "Adresse", name: "address", widget: "string"}
+          - {label: "Disponibilité", name: "availability", widget: "string"}
+          - {label: "Message d'Engagement", name: "commitment", widget: "text"}

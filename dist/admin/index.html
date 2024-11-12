@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A Dose of Soraya - Administration</title>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+      /* Style personnalisé pour l'interface admin */
+      :root {
+        --primary-color: #D4AF37;
+        --secondary-color: #1A1A1A;
+        --text-color: #333;
+        --border-radius: 8px;
+      }
+
+      body {
+        font-family: 'Montserrat', sans-serif;
+        background-color: #f5f5f5;
+      }
+
+      /* Header */
+      header[class*="AppHeader"] {
+        background: var(--secondary-color) !important;
+        border-bottom: 2px solid var(--primary-color);
+      }
+
+      /* Logo */
+      [class*="AppHeader"] [class*="AppHeaderContent"] {
+        color: var(--primary-color) !important;
+        font-weight: 300;
+        letter-spacing: 2px;
+      }
+
+      /* Sidebar */
+      [class*="SidebarContainer"] {
+        background: var(--secondary-color) !important;
+        border-right: 1px solid rgba(212, 175, 55, 0.2);
+      }
+
+      /* Menu Items */
+      [class*="CollectionLink"] {
+        color: #fff !important;
+        transition: all 0.3s ease;
+      }
+
+      [class*="CollectionLink"]:hover {
+        background: rgba(212, 175, 55, 0.1) !important;
+        color: var(--primary-color) !important;
+      }
+
+      /* Active Menu Item */
+      [class*="CollectionLink"][class*="active"] {
+        background: rgba(212, 175, 55, 0.2) !important;
+        color: var(--primary-color) !important;
+        border-left: 3px solid var(--primary-color);
+      }
+
+      /* Main Content */
+      main[class*="Main"] {
+        background: #fff;
+        padding: 2rem;
+        border-radius: var(--border-radius);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+
+      /* Cards */
+      [class*="Card"] {
+        border-radius: var(--border-radius);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+      }
+
+      [class*="Card"]:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      }
+
+      /* Buttons */
+      button[class*="Button"] {
+        background-color: var(--primary-color) !important;
+        color: var(--secondary-color) !important;
+        border-radius: var(--border-radius);
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+      }
+
+      button[class*="Button"]:hover {
+        opacity: 0.9;
+        transform: translateY(-1px);
+      }
+
+      /* Form Fields */
+      [class*="ControlContainer"] {
+        background: #fff;
+        border-radius: var(--border-radius);
+        border: 1px solid #e0e0e0;
+        transition: all 0.3s ease;
+      }
+
+      [class*="ControlContainer"]:focus-within {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+      }
+
+      /* Preview Panel */
+      [class*="PreviewPaneFrame"] {
+        border-radius: var(--border-radius);
+        border: 1px solid #e0e0e0;
+      }
+
+      /* Notifications */
+      [class*="NotificationContainer"] {
+        border-radius: var(--border-radius);
+      }
+
+      /* Media Gallery */
+      [class*="MediaLibrary"] {
+        background: #fff;
+        border-radius: var(--border-radius);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      }
+
+      /* Dropzone */
+      [class*="Dropzone"] {
+        border: 2px dashed var(--primary-color);
+        border-radius: var(--border-radius);
+        background: rgba(212, 175, 55, 0.05);
+      }
+
+      /* Tables */
+      table {
+        border-radius: var(--border-radius);
+        overflow: hidden;
+      }
+
+      th {
+        background: var(--secondary-color);
+        color: #fff;
+      }
+
+      tr:hover {
+        background: rgba(212, 175, 55, 0.05);
+      }
+    </style>
+  </head>
+  <body>
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <script>
+      // Configuration personnalisée pour l'aperçu
+      CMS.registerPreviewStyle('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap');
+      
+      // Activation du mode sombre par défaut
+      if (localStorage) {
+        localStorage.setItem('netlifyCmsDefaultMode', 'dark');
+      }
+    </script>
+  </body>
+</html>
