@@ -1,0 +1,62 @@
+{"services": [
+  {
+    "title": "Lifestyle Personnalisé",
+    "description": "Un service sur mesure qui s'adapte à votre style de vie, anticipant vos besoins et orchestrant chaque détail de votre quotidien.",
+    "icon": "Crown",
+    "features": [
+      {
+        "title": "Gestion du Quotidien",
+        "description": "Organisation complète de votre agenda, réservations et déplacements"
+      },
+      {
+        "title": "Service Personnel",
+        "description": "Une équipe dédiée disponible 24/7 pour répondre à vos besoins"
+      }
+    ]
+  },
+  {
+    "title": "Conciergerie de Luxe",
+    "description": "Accès privilégié aux établissements les plus prestigieux, réservations exclusives et expériences uniques.",
+    "icon": "Star",
+    "features": [
+      {
+        "title": "Accès VIP",
+        "description": "Entrée privilégiée dans les établissements les plus exclusifs"
+      },
+      {
+        "title": "Expériences Sur-Mesure",
+        "description": "Création d'expériences uniques selon vos envies"
+      }
+    ]
+  },
+  {
+    "title": "Événements Privés",
+    "description": "Organisation d'événements exceptionnels, du concept à la réalisation, avec une attention particulière portée aux moindres détails.",
+    "icon": "Gem",
+    "features": [
+      {
+        "title": "Planification Complète",
+        "description": "Gestion intégrale de votre événement de A à Z"
+      },
+      {
+        "title": "Lieux d'Exception",
+        "description": "Accès aux venues les plus prestigieuses"
+      }
+    ]
+  },
+  {
+    "title": "Service International",
+    "description": "Une présence mondiale pour vous accompagner partout, avec des partenaires d'excellence dans les plus grandes villes.",
+    "icon": "Globe",
+    "features": [
+      {
+        "title": "Réseau Mondial",
+        "description": "Des partenaires de confiance dans les principales métropoles"
+      },
+      {
+        "title": "Support 24/7",
+        "description": "Assistance internationale disponible à tout moment"
+      }
+    ]
+  }
+]}

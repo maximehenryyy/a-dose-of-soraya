@@ -23,37 +23,42 @@ locale: 'fr'
 collections:
   - name: "home"
     label: "🏠 Accueil"
-    folder: "content/home"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - {label: "Titre", name: "title", widget: "string"}
-      - {label: "Sous-titre", name: "subtitle", widget: "string"}
-      - {label: "Description", name: "description", widget: "text"}
-      - label: "Carousel"
-        name: "carousel"
-        widget: "list"
+    files:
+      - label: "Page d'accueil"
+        name: "main"
+        file: "content/home/main.md"
         fields:
-          - {label: "Image", name: "image", widget: "image"}
           - {label: "Titre", name: "title", widget: "string"}
+          - {label: "Sous-titre", name: "subtitle", widget: "string"}
+          - {label: "Description", name: "description", widget: "text"}
+          - label: "Carousel"
+            name: "carousel"
+            widget: "list"
+            fields:
+              - {label: "Image", name: "image", widget: "image"}
+              - {label: "Titre", name: "title", widget: "string"}
 
   - name: "services"
     label: "💎 Services"
-    folder: "content/services"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - {label: "Titre", name: "title", widget: "string"}
-      - {label: "Description", name: "description", widget: "text"}
-      - {label: "Icône", name: "icon", widget: "select", options: ["Crown", "Star", "Gem", "Globe"]}
-      - {label: "Ordre", name: "order", widget: "number"}
-      - label: "Caractéristiques"
-        name: "features"
-        widget: "list"
-        required: false
+    files:
+      - label: "Liste des Services"
+        name: "list"
+        file: "content/services/services.json"
         fields:
-          - {label: "Titre", name: "title", widget: "string"}
-          - {label: "Description", name: "description", widget: "text"}
+          - label: "Services"
+            name: "services"
+            widget: "list"
+            fields:
+              - {label: "Titre", name: "title", widget: "string"}
+              - {label: "Description", name: "description", widget: "text"}
+              - {label: "Icône", name: "icon", widget: "select", options: ["Crown", "Star", "Gem", "Globe"]}
+              - label: "Caractéristiques"
+                name: "features"
+                widget: "list"
+                required: false
+                fields:
+                  - {label: "Titre", name: "title", widget: "string"}
+                  - {label: "Description", name: "description", widget: "text"}
 
   - name: "wellness"
     label: "🧘‍♀️ Bien-être"

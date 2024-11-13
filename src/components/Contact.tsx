@@ -1,8 +1,46 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Mail, Phone, MapPin, Clock } from 'lucide-react';
 import ContactForm from './ContactForm';
 
+interface ContactInfo {
+  email: string;
+  phone: string;
+  address: string;
+  availability: string;
+  commitment: string;
+}
+
 const Contact = () => {
+  const [contactInfo, setContactInfo] = useState<ContactInfo>({
+    email: '',
+    phone: '',
+    address: '',
+    availability: '',
+    commitment: ''
+  });
+
+  useEffect(() => {
+    // Fetch contact info from /content/settings/contact.md
+    fetch('/content/settings/contact.md')
+      .then(response => response.text())
+      .then(text => {
+        // Parse frontmatter
+        const matches = text.match(/---([\s\S]*?)---/);
+        if (matches && matches[1]) {
+          const frontmatter = matches[1].trim().split('\n').reduce((acc, line) => {
+            const [key, ...value] = line.split(':');
+            if (key && value) {
+              acc[key.trim()] = value.join(':').trim();
+            }
+            return acc;
+          }, {} as ContactInfo);
+          
+          setContactInfo(frontmatter);
+        }
+      })
+      .catch(error => console.error('Error fetching contact info:', error));
+  }, []);
+
   return (
     <section id="contact" className="py-24 bg-black">
       <div className="container mx-auto px-4">
@@ -27,28 +65,28 @@ const Contact = () => {
                     <Mail className="w-5 h-5 text-gold mt-1 mr-4" />
                     <div>
                       <p className="font-light">Email</p>
-                      <p className="text-gray-400">contact@adoseofsoraya.com</p>
+                      <p className="text-gray-400">{contactInfo.email}</p>
                     </div>
                   </div>
                   <div className="flex items-start">
                     <Phone className="w-5 h-5 text-gold mt-1 mr-4" />
                     <div>
                       <p className="font-light">Téléphone</p>
-                      <p className="text-gray-400">+33 (0)1 XX XX XX XX</p>
+                      <p className="text-gray-400">{contactInfo.phone}</p>
                     </div>
                   </div>
                   <div className="flex items-start">
                     <MapPin className="w-5 h-5 text-gold mt-1 mr-4" />
                     <div>
                       <p className="font-light">Adresse</p>
-                      <p className="text-gray-400">Paris, France</p>
+                      <p className="text-gray-400">{contactInfo.address}</p>
                     </div>
                   </div>
                   <div className="flex items-start">
                     <Clock className="w-5 h-5 text-gold mt-1 mr-4" />
                     <div>
                       <p className="font-light">Disponibilité</p>
-                      <p className="text-gray-400">Sur rendez-vous uniquement</p>
+                      <p className="text-gray-400">{contactInfo.availability}</p>
                     </div>
                   </div>
                 </div>
@@ -58,9 +96,7 @@ const Contact = () => {
             <div className="bg-dark-gray p-8">
               <h3 className="text-xl font-light mb-6 tracking-wide">Notre Engagement</h3>
               <p className="text-gray-400 leading-relaxed">
-                Chaque demande est traitée avec la plus grande confidentialité. 
-                Notre équipe s'engage à vous répondre dans les 24 heures pour 
-                débuter l'organisation de votre expérience personnalisée.
+                {contactInfo.commitment}
               </p>
             </div>
           </div>
