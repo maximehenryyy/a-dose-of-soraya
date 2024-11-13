@@ -1,35 +1,37 @@
 backend:
   name: git-gateway
   branch: main
-  commit_messages:
-    create: 'Create {{collection}} "{{slug}}"'
-    update: 'Update {{collection}} "{{slug}}"'
-    delete: 'Delete {{collection}} "{{slug}}"'
-    uploadMedia: 'Upload "{{path}}"'
-    deleteMedia: 'Delete "{{path}}"'
 
-# Ces paramètres permettent de prévisualiser les changements en local
+# Configuration locale pour le développement
 local_backend: true
 
-# Dossier où seront stockés les médias uploadés
+# Configuration des médias
 media_folder: "public/images/uploads"
-# URL publique des médias
 public_folder: "/images/uploads"
 
-# Langue de l'interface d'administration
+# Configuration des messages de commit
+commit_messages:
+  create: "Content: Add {{collection}} '{{slug}}'"
+  update: "Content: Update {{collection}} '{{slug}}'"
+  delete: "Content: Delete {{collection}} '{{slug}}'"
+  uploadMedia: "Assets: Upload '{{path}}'"
+  deleteMedia: "Assets: Delete '{{path}}'"
+
+# Langue de l'interface
 locale: 'fr'
 
 collections:
-  - name: "hero"
+  - name: "home"
     label: "🏠 Accueil"
-    folder: "content/hero"
+    folder: "content/home"
     create: true
+    slug: "{{slug}}"
     fields:
       - {label: "Titre", name: "title", widget: "string"}
       - {label: "Sous-titre", name: "subtitle", widget: "string"}
-      - {label: "Description", name: "description", widget: "text", required: false}
-      - label: "Images Carousel"
-        name: "carousel_images"
+      - {label: "Description", name: "description", widget: "text"}
+      - label: "Carousel"
+        name: "carousel"
         widget: "list"
         fields:
           - {label: "Image", name: "image", widget: "image"}
@@ -39,10 +41,12 @@ collections:
     label: "💎 Services"
     folder: "content/services"
     create: true
+    slug: "{{slug}}"
     fields:
       - {label: "Titre", name: "title", widget: "string"}
       - {label: "Description", name: "description", widget: "text"}
-      - {label: "Image de fond", name: "backgroundImage", widget: "image", required: false}
+      - {label: "Icône", name: "icon", widget: "select", options: ["Crown", "Star", "Gem", "Globe"]}
+      - {label: "Ordre", name: "order", widget: "number"}
       - label: "Caractéristiques"
         name: "features"
         widget: "list"
@@ -50,13 +54,12 @@ collections:
         fields:
           - {label: "Titre", name: "title", widget: "string"}
           - {label: "Description", name: "description", widget: "text"}
-      - {label: "Icône", name: "icon", widget: "select", options: ["Crown", "Star", "Gem", "Globe"]}
-      - {label: "Ordre", name: "order", widget: "number"}
 
   - name: "wellness"
     label: "🧘‍♀️ Bien-être"
     folder: "content/wellness"
     create: true
+    slug: "{{slug}}"
     fields:
       - {label: "Titre", name: "title", widget: "string"}
       - {label: "Description", name: "description", widget: "text"}
@@ -73,6 +76,7 @@ collections:
     label: "✨ Expériences Mystiques"
     folder: "content/mystical"
     create: true
+    slug: "{{slug}}"
     fields:
       - {label: "Titre", name: "title", widget: "string"}
       - {label: "Description", name: "description", widget: "text"}
@@ -90,6 +94,7 @@ collections:
     label: "🎉 Événements"
     folder: "content/events"
     create: true
+    slug: "{{slug}}"
     fields:
       - {label: "Titre", name: "title", widget: "string"}
       - {label: "Description", name: "description", widget: "text"}
@@ -107,14 +112,21 @@ collections:
           - {label: "Image", name: "image", widget: "image"}
           - {label: "Légende", name: "caption", widget: "string"}
 
-  - name: "contact"
-    label: "📞 Contact"
-    folder: "content/contact"
-    create: false
+  - name: "settings"
+    label: "⚙️ Paramètres"
     files:
-      - label: "Informations de Contact"
-        name: "info"
-        file: "content/contact/info.md"
+      - label: "Métadonnées"
+        name: "metadata"
+        file: "content/settings/metadata.md"
+        fields:
+          - {label: "Titre du Site", name: "siteTitle", widget: "string"}
+          - {label: "Description", name: "description", widget: "text"}
+          - {label: "Mots-clés", name: "keywords", widget: "list"}
+          - {label: "Image par défaut", name: "defaultImage", widget: "image"}
+      
+      - label: "Contact"
+        name: "contact"
+        file: "content/settings/contact.md"
         fields:
           - {label: "Email", name: "email", widget: "string"}
           - {label: "Téléphone", name: "phone", widget: "string"}
@@ -128,26 +140,3 @@ collections:
             fields:
               - {label: "Plateforme", name: "platform", widget: "select", options: ["Instagram", "LinkedIn", "Facebook", "Twitter"]}
               - {label: "URL", name: "url", widget: "string"}
-
-  - name: "settings"
-    label: "⚙️ Paramètres"
-    files:
-      - label: "Navigation"
-        name: "navigation"
-        file: "content/settings/navigation.md"
-        fields:
-          - label: "Menu Principal"
-            name: "mainMenu"
-            widget: "list"
-            fields:
-              - {label: "Texte", name: "text", widget: "string"}
-              - {label: "URL", name: "url", widget: "string"}
-              - {label: "Ordre", name: "order", widget: "number"}
-      - label: "Métadonnées"
-        name: "metadata"
-        file: "content/settings/metadata.md"
-        fields:
-          - {label: "Titre du Site", name: "siteTitle", widget: "string"}
-          - {label: "Description", name: "description", widget: "text"}
-          - {label: "Mots-clés", name: "keywords", widget: "list"}
-          - {label: "Image par défaut", name: "defaultImage", widget: "image"}
