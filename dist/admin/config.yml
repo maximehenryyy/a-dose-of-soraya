@@ -1,10 +1,21 @@
 backend:
   name: git-gateway
-  branch: main
+  branch: main # Branche à utiliser
+  commit_messages:
+    create: "Create {{collection}} "{{slug}}""
+    update: "Update {{collection}} "{{slug}}""
+    delete: "Delete {{collection}} "{{slug}}""
+    uploadMedia: "Upload "{{path}}""
+    deleteMedia: "Delete "{{path}}""
 
+# Ces paramètres permettent de prévisualiser les changements en local
+local_backend: true
+# Dossier où seront stockés les médias uploadés
 media_folder: "public/images/uploads"
+# URL publique des médias
 public_folder: "/images/uploads"
 
+# Langue de l'interface d'administration
 locale: 'fr'
 
 collections:
@@ -16,6 +27,7 @@ collections:
       - {label: "Titre", name: "title", widget: "string"}
       - {label: "Sous-titre", name: "subtitle", widget: "string"}
       - {label: "Description", name: "description", widget: "text"}
+      - {label: "Description", name: "description", widget: "text", required: false}
       - label: "Images Carousel"
         name: "carousel_images"
         widget: "list"
@@ -30,9 +42,16 @@ collections:
     fields:
       - {label: "Titre", name: "title", widget: "string"}
       - {label: "Description", name: "description", widget: "text"}
-      - {label: "Image", name: "image", widget: "image"}
       - {label: "Icône", name: "icon", widget: "select", options: ["Crown", "Star", "Gem", "Globe"]}
       - {label: "Ordre", name: "order", widget: "number"}
+      - {label: "Image de fond", name: "backgroundImage", widget: "image", required: false}
+      - label: "Caractéristiques"
+        name: "features"
+        widget: "list"
+        required: false
+        fields:
+          - {label: "Titre", name: "title", widget: "string"}
+          - {label: "Description", name: "description", widget: "text"}
 
   - name: "wellness"
     label: "🧘‍♀️ Bien-être"
@@ -42,8 +61,13 @@ collections:
       - {label: "Titre", name: "title", widget: "string"}
       - {label: "Description", name: "description", widget: "text"}
       - {label: "Image", name: "image", widget: "image"}
-      - {label: "Prix", name: "price", widget: "string"}
-      - {label: "Durée", name: "duration", widget: "string"}
+      - {label: "Prix", name: "price", widget: "string", required: false}
+      - {label: "Durée", name: "duration", widget: "string", required: false}
+      - label: "Avantages"
+        name: "benefits"
+        widget: "list"
+        required: false
+        field: {label: "Avantage", name: "benefit", widget: "string"}
 
   - name: "mystical"
     label: "✨ Expériences Mystiques"
@@ -54,6 +78,13 @@ collections:
       - {label: "Description", name: "description", widget: "text"}
       - {label: "Image", name: "image", widget: "image"}
       - {label: "Icône", name: "icon", widget: "select", options: ["Sparkle", "Moon", "Compass", "Stars"]}
+      - label: "Détails"
+        name: "details"
+        widget: "list"
+        required: false
+        fields:
+          - {label: "Titre", name: "title", widget: "string"}
+          - {label: "Description", name: "description", widget: "text"}
 
   - name: "events"
     label: "🎉 Événements"
@@ -68,6 +99,13 @@ collections:
         name: "services"
         widget: "list"
         field: {label: "Service", name: "service", widget: "string"}
+      - label: "Galerie"
+        name: "gallery"
+        widget: "list"
+        required: false
+        fields:
+          - {label: "Image", name: "image", widget: "image"}
+          - {label: "Légende", name: "caption", widget: "string"}
 
   - name: "contact"
     label: "📞 Contact"
@@ -83,3 +121,33 @@ collections:
           - {label: "Adresse", name: "address", widget: "string"}
           - {label: "Disponibilité", name: "availability", widget: "string"}
           - {label: "Message d'Engagement", name: "commitment", widget: "text"}
+          - label: "Réseaux Sociaux"
+            name: "social"
+            widget: "list"
+            required: false
+            fields:
+              - {label: "Plateforme", name: "platform", widget: "select", options: ["Instagram", "LinkedIn", "Facebook", "Twitter"]}
+              - {label: "URL", name: "url", widget: "string"}
+
+  - name: "settings"
+    label: "⚙️ Paramètres"
+    files:
+      - label: "Navigation"
+        name: "navigation"
+        file: "content/settings/navigation.md"
+        fields:
+          - label: "Menu Principal"
+            name: "mainMenu"
+            widget: "list"
+            fields:
+              - {label: "Texte", name: "text", widget: "string"}
+              - {label: "URL", name: "url", widget: "string"}
+              - {label: "Ordre", name: "order", widget: "number"}
+      - label: "Métadonnées"
+        name: "metadata"
+        file: "content/settings/metadata.md"
+        fields:
+          - {label: "Titre du Site", name: "siteTitle", widget: "string"}
+          - {label: "Description", name: "description", widget: "text"}
+          - {label: "Mots-clés", name: "keywords", widget: "list"}
+          - {label: "Image par défaut", name: "defaultImage", widget: "image"}

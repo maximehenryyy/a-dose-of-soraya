@@ -5,145 +5,195 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>A Dose of Soraya - Administration</title>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-      /* Style personnalisé pour l'interface admin */
       :root {
-        --primary-color: #D4AF37;
-        --secondary-color: #1A1A1A;
-        --text-color: #333;
+        --primary-color: #1a73e8;
+        --secondary-color: #202124;
+        --background-color: #ffffff;
+        --surface-color: #f8f9fa;
+        --text-primary: #202124;
+        --text-secondary: #5f6368;
+        --border-color: #dadce0;
+        --error-color: #d93025;
+        --success-color: #188038;
         --border-radius: 8px;
+        --transition: all 0.2s ease;
       }
 
       body {
-        font-family: 'Montserrat', sans-serif;
-        background-color: #f5f5f5;
+        font-family: 'Inter', sans-serif;
+        background-color: var(--background-color);
+        color: var(--text-primary);
+        line-height: 1.5;
+        margin: 0;
       }
 
       /* Header */
-      header[class*="AppHeader"] {
-        background: var(--secondary-color) !important;
-        border-bottom: 2px solid var(--primary-color);
+      [class*="AppHeader"] {
+        background: var(--background-color) !important;
+        box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 2px 6px 2px rgba(60,64,67,0.15) !important;
+        height: 64px !important;
       }
 
-      /* Logo */
       [class*="AppHeader"] [class*="AppHeaderContent"] {
-        color: var(--primary-color) !important;
-        font-weight: 300;
-        letter-spacing: 2px;
+        color: var(--text-primary) !important;
+        font-weight: 400 !important;
+        font-size: 22px !important;
       }
 
       /* Sidebar */
       [class*="SidebarContainer"] {
-        background: var(--secondary-color) !important;
-        border-right: 1px solid rgba(212, 175, 55, 0.2);
+        background: var(--surface-color) !important;
+        border-right: 1px solid var(--border-color) !important;
+        width: 256px !important;
       }
 
       /* Menu Items */
       [class*="CollectionLink"] {
-        color: #fff !important;
-        transition: all 0.3s ease;
+        color: var(--text-primary) !important;
+        padding: 8px 24px !important;
+        margin: 4px 8px !important;
+        border-radius: var(--border-radius) !important;
+        transition: var(--transition) !important;
       }
 
       [class*="CollectionLink"]:hover {
-        background: rgba(212, 175, 55, 0.1) !important;
+        background: rgba(26,115,232,0.08) !important;
         color: var(--primary-color) !important;
       }
 
       /* Active Menu Item */
       [class*="CollectionLink"][class*="active"] {
-        background: rgba(212, 175, 55, 0.2) !important;
+        background: rgba(26,115,232,0.12) !important;
         color: var(--primary-color) !important;
-        border-left: 3px solid var(--primary-color);
       }
 
       /* Main Content */
       main[class*="Main"] {
-        background: #fff;
-        padding: 2rem;
-        border-radius: var(--border-radius);
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        background: var(--background-color) !important;
+        padding: 24px !important;
       }
 
       /* Cards */
       [class*="Card"] {
-        border-radius: var(--border-radius);
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        transition: all 0.3s ease;
+        border-radius: var(--border-radius) !important;
+        box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15) !important;
+        border: none !important;
+        transition: var(--transition) !important;
       }
 
       [class*="Card"]:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        box-shadow: 0 1px 3px 0 rgba(60,64,67,0.3), 0 4px 8px 3px rgba(60,64,67,0.15) !important;
       }
 
       /* Buttons */
       button[class*="Button"] {
         background-color: var(--primary-color) !important;
-        color: var(--secondary-color) !important;
-        border-radius: var(--border-radius);
-        font-weight: 500;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        transition: all 0.3s ease;
+        color: white !important;
+        border-radius: var(--border-radius) !important;
+        font-weight: 500 !important;
+        text-transform: none !important;
+        padding: 8px 24px !important;
+        height: 36px !important;
+        transition: var(--transition) !important;
       }
 
       button[class*="Button"]:hover {
-        opacity: 0.9;
-        transform: translateY(-1px);
+        background-color: #1557b0 !important;
+        box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15) !important;
       }
 
       /* Form Fields */
       [class*="ControlContainer"] {
-        background: #fff;
-        border-radius: var(--border-radius);
-        border: 1px solid #e0e0e0;
-        transition: all 0.3s ease;
+        background: var(--background-color) !important;
+        border-radius: var(--border-radius) !important;
+        border: 1px solid var(--border-color) !important;
+        transition: var(--transition) !important;
       }
 
       [class*="ControlContainer"]:focus-within {
-        border-color: var(--primary-color);
-        box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+        border-color: var(--primary-color) !important;
+        box-shadow: 0 0 0 2px rgba(26,115,232,0.2) !important;
       }
 
-      /* Preview Panel */
-      [class*="PreviewPaneFrame"] {
-        border-radius: var(--border-radius);
-        border: 1px solid #e0e0e0;
+      /* Input Labels */
+      [class*="FieldLabel"] {
+        color: var(--text-secondary) !important;
+        font-size: 14px !important;
+        font-weight: 500 !important;
       }
 
-      /* Notifications */
-      [class*="NotificationContainer"] {
-        border-radius: var(--border-radius);
+      /* Dropdowns */
+      select {
+        border-radius: var(--border-radius) !important;
+        border: 1px solid var(--border-color) !important;
+        padding: 8px 12px !important;
+        height: 40px !important;
       }
 
-      /* Media Gallery */
-      [class*="MediaLibrary"] {
-        background: #fff;
-        border-radius: var(--border-radius);
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      }
-
-      /* Dropzone */
-      [class*="Dropzone"] {
-        border: 2px dashed var(--primary-color);
-        border-radius: var(--border-radius);
-        background: rgba(212, 175, 55, 0.05);
+      /* Search Bar */
+      [class*="SearchInput"] {
+        background: var(--surface-color) !important;
+        border-radius: var(--border-radius) !important;
+        border: 1px solid var(--border-color) !important;
+        padding: 8px 12px !important;
       }
 
       /* Tables */
       table {
-        border-radius: var(--border-radius);
-        overflow: hidden;
+        border-radius: var(--border-radius) !important;
+        border: 1px solid var(--border-color) !important;
       }
 
       th {
-        background: var(--secondary-color);
-        color: #fff;
+        background: var(--surface-color) !important;
+        color: var(--text-secondary) !important;
+        font-weight: 500 !important;
+        text-transform: none !important;
+        padding: 16px !important;
       }
 
-      tr:hover {
-        background: rgba(212, 175, 55, 0.05);
+      td {
+        padding: 16px !important;
+        border-top: 1px solid var(--border-color) !important;
+      }
+
+      /* Toast Notifications */
+      [class*="Toast"] {
+        border-radius: var(--border-radius) !important;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
+      }
+
+      /* Media Gallery */
+      [class*="MediaLibrary"] {
+        background: var(--background-color) !important;
+        border-radius: var(--border-radius) !important;
+      }
+
+      /* Dropzone */
+      [class*="Dropzone"] {
+        border: 2px dashed var(--border-color) !important;
+        border-radius: var(--border-radius) !important;
+        background: var(--surface-color) !important;
+        transition: var(--transition) !important;
+      }
+
+      [class*="Dropzone"]:hover {
+        border-color: var(--primary-color) !important;
+        background: rgba(26,115,232,0.04) !important;
+      }
+
+      /* Markdown Editor */
+      [class*="MarkdownEditor"] {
+        border-radius: var(--border-radius) !important;
+        border: 1px solid var(--border-color) !important;
+      }
+
+      /* Toolbar */
+      [class*="Toolbar"] {
+        background: var(--surface-color) !important;
+        border-bottom: 1px solid var(--border-color) !important;
       }
     </style>
   </head>
@@ -151,11 +201,11 @@
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
     <script>
       // Configuration personnalisée pour l'aperçu
-      CMS.registerPreviewStyle('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap');
+      CMS.registerPreviewStyle('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
       
-      // Activation du mode sombre par défaut
+      // Activation du mode clair par défaut
       if (localStorage) {
-        localStorage.setItem('netlifyCmsDefaultMode', 'dark');
+        localStorage.setItem('netlifyCmsDefaultMode', 'light');
       }
     </script>
   </body>
